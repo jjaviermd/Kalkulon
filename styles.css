@@ -9,6 +9,11 @@
     grid-template-rows: 50px,100px,500px;
 }
 
+/* .digit, .function, .operator{
+    font-family: 'Sarpanch', sans-serif;
+    font-size: xx-large;
+} */
+
 #grid_container{
     margin-left: auto;
     margin-right: auto;
@@ -42,13 +47,14 @@
 
 #model{
     background-color: #AEC3B0;
-    border: 2px solid black;
-    display: block;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
+    /* border: 2px solid black; */    
+    display: inline-block;
+    /*border-radius: 10px;*/
+    text-align: center;
+    margin-top: 30px;
     height:fit-content;
-    width: fit-content;
+    width:500px;
+    font-family: 'Sarpanch', sans-serif;
 }
 
 button{
@@ -57,14 +63,20 @@ button{
 
 .digit {
     background-color: #598392;
+    font-family: 'Sarpanch', sans-serif;
+    font-size:xx-large;
 }
 
 .function {
     background-color: #124559;
+    font-family: 'Sarpanch', sans-serif;
+    font-size: xx-large;
 }
 
 .operator {
     background-color: #124559;
+    font-family: 'Sarpanch', sans-serif;
+    font-size: xx-large;
 }
 
 #equal{
