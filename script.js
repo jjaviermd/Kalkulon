@@ -44,3 +44,19 @@ function operate(digitA, operator, digitB) {
     }
 }
 //--------------------------------------------------------------------
+//selectors
+const display = document.querySelector('#screen');
+const keyDigit = document.querySelector('.digit');
+const keyOperator = document.querySelector('.operator');
+//const keyFunction = document.querySelector('.function');
+const keyEqual = document.querySelector('#equal');
+const keyClear = document.querySelector('#clear');
+const keyBackSpace = document.querySelector('#backspace');
+//--------------------------------------------------------------------
+//Variables
+let displayValue = '';
+let input1 = 0;
+let input2 = 0;
+let operator = '';
+//--------------------------------------------------------------------
+keyDigit.addEventListener()
