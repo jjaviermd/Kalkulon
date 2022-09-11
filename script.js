@@ -70,19 +70,26 @@ function setOperator(e){
     input1 = Number(displayValue)
     //console.log(typeof input1);
     operator = e.target.firstChild.nodeValue;
+    displayValue = '';
+}
+
+function clear() {
+    displayValue = '';
+    operator = '';
+    input1,result = undefined;
+    display.textContent='';
+}
+
+function backspace() {
+    displayValue= displayValue.slice(0,-1);
+    display.textContent = displayValue;
 }
 //--------------------------------------------------------------------
 //event listener
-for (let i=0;i<keyDigit.length;i++){
-    keyDigit[i].addEventListener('click', setDisplayValueInput,false)
-   /*  keyDigit[i].addEventListener('click',function(e){
-        if(operator=== ''){
-            setDisplayValueInput;
-        }
-        displayValue = '';
-        setDisplayValueInput;
-    },false) */
-}
+
+keyDigit.forEach(digit =>{
+    digit.addEventListener('click',setDisplayValueInput,false)
+})
 
 for (let i=0; i<keyOperator.length; i++){
     keyOperator[i].addEventListener('click', setOperator,false)
@@ -93,3 +100,7 @@ keyEqual.addEventListener('click',function() {
     result = operate(input1,operator,input2);
     display.textContent = result
 })
+
+keyClear.addEventListener('click',clear,false);
+
+keyBackSpace.addEventListener('click',backspace,false);
