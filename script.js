@@ -1,9 +1,9 @@
 //selectors
-//const keysAll = document.querySelector('#grid_container');
 const display = document.querySelector('#screen');
 const keyDigit = document.querySelectorAll('.digit');
 const keyOperator = document.querySelectorAll('.operator');
 //const keyFunction = document.querySelector('.function');
+//const keysAll = document.querySelector('#grid_container');
 const keyEqual = document.querySelector('#equal');
 const keyClear = document.querySelector('#clear');
 const keyBackSpace = document.querySelector('#backspace');
@@ -36,7 +36,6 @@ function multiply(digitA) {
 
 function divide(digitA) {
     return function(digitB){
-        if (digitB ===0) return alert('Err') ;
         return digitA/digitB;
     }
 }
@@ -56,7 +55,7 @@ function operate(digitA, operator, digitB) {
         return divide(digitA)(digitB)
         break;
     default:
-        return alert('Err')
+        return logError();
         break;
     }
 }
@@ -64,7 +63,6 @@ function operate(digitA, operator, digitB) {
  function setDisplayValueInput(e) {
     //console.log(e.target.firstChild.nodeValue === '.');
     if(e.target.firstChild.nodeValue === '.'){
-        console.log(displayValue.includes('.'));
         if(!displayValue.includes('.')){
             displayValue += e.target.firstChild.nodeValue;
             display.textContent=displayValue;
@@ -92,7 +90,9 @@ function setOperator(e){
 function clear() {
     displayValue = '';
     operator = '';
-    input1,result = undefined;
+    input1 = undefined;
+    input2 = undefined;
+    result = undefined;
     display.textContent='';
 }
 
@@ -103,8 +103,17 @@ function backspace() {
 
 function getResult() {
     input2 = Number(displayValue);
-    result = operate(input1,operator,input2);
+    if(input2 === 0 && operator === '/'){
+        logError();
+    } else {
+    result = Number(operate(input1,operator,input2));
     display.textContent = result;
+    }
+}
+function logError() {
+    clear();
+    let errorMsg = 'Fatal Error'
+    display.textContent = errorMsg;
 }
 //--------------------------------------------------------------------
 //event listeners
