@@ -62,8 +62,17 @@ function operate(digitA, operator, digitB) {
 }
 
  function setDisplayValueInput(e) {
+    //console.log(e.target.firstChild.nodeValue === '.');
+    if(e.target.firstChild.nodeValue === '.'){
+        console.log(displayValue.includes('.'));
+        if(!displayValue.includes('.')){
+            displayValue += e.target.firstChild.nodeValue;
+            display.textContent=displayValue;
+        }
+    }else {
     displayValue += e.target.firstChild.nodeValue;
     display.textContent=displayValue;
+    }
 } 
 
 function setOperator(e){
@@ -77,7 +86,6 @@ function setOperator(e){
     input1 = Number(displayValue);
     operator = e.target.firstChild.nodeValue;
     displayValue = '';
-    console.log(!input1,!operator);
     }
 }
 
