@@ -1,3 +1,22 @@
+
+//--------------------------------------------------------------------
+//selectors
+//const keysAll = document.querySelector('#grid_container');
+const display = document.querySelector('#screen');
+const keyDigit = document.querySelectorAll('.digit');
+const keyOperator = document.querySelectorAll('.operator');
+//const keyFunction = document.querySelector('.function');
+const keyEqual = document.querySelector('#equal');
+const keyClear = document.querySelector('#clear');
+const keyBackSpace = document.querySelector('#backspace');
+//--------------------------------------------------------------------
+//Variables
+let displayValue = '';
+let input1;
+let input2;
+let operator = '';
+let result;
+//--------------------------------------------------------------------
 // basic math
 function add(digitA) {
     return function(digitB){
@@ -43,24 +62,7 @@ function operate(digitA, operator, digitB) {
         break;
     }
 }
-//--------------------------------------------------------------------
-//selectors
-//const keysAll = document.querySelector('#grid_container');
-const display = document.querySelector('#screen');
-const keyDigit = document.querySelectorAll('.digit');
-const keyOperator = document.querySelectorAll('.operator');
-//const keyFunction = document.querySelector('.function');
-const keyEqual = document.querySelector('#equal');
-const keyClear = document.querySelector('#clear');
-const keyBackSpace = document.querySelector('#backspace');
-//--------------------------------------------------------------------
-//Variables
-let displayValue = '';
-let input1;
-let input2;
-let operator = '';
-let result;
-//--------------------------------------------------------------------
+
  function setDisplayValueInput(e) {
     displayValue += e.target.firstChild.nodeValue;
     display.textContent=displayValue;
@@ -85,7 +87,7 @@ function backspace() {
     display.textContent = displayValue;
 }
 //--------------------------------------------------------------------
-//event listener
+//event listeners
 
 keyDigit.forEach(digit =>{
     digit.addEventListener('click',setDisplayValueInput,false)
