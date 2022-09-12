@@ -49,6 +49,7 @@
     margin-top: 2.5%;
     font-family: 'Sarpanch', sans-serif;
     font-size: 50px;
+    overflow: scroll;
 }
 
 
