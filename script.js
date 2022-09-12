@@ -1,5 +1,3 @@
-
-//--------------------------------------------------------------------
 //selectors
 //const keysAll = document.querySelector('#grid_container');
 const display = document.querySelector('#screen');
@@ -69,10 +67,18 @@ function operate(digitA, operator, digitB) {
 } 
 
 function setOperator(e){
-    input1 = Number(displayValue)
-    //console.log(typeof input1);
+    if(!input1,!operator ===false){
+        getResult();
+        input1 = result;
+        input2 = undefined;
+        displayValue='';
+        operator=e.target.firstChild.nodeValue;
+    }else {
+    input1 = Number(displayValue);
     operator = e.target.firstChild.nodeValue;
     displayValue = '';
+    console.log(!input1,!operator);
+    }
 }
 
 function clear() {
@@ -86,6 +92,12 @@ function backspace() {
     displayValue= displayValue.slice(0,-1);
     display.textContent = displayValue;
 }
+
+function getResult() {
+    input2 = Number(displayValue);
+    result = operate(input1,operator,input2);
+    display.textContent = result;
+}
 //--------------------------------------------------------------------
 //event listeners
 
@@ -93,15 +105,11 @@ keyDigit.forEach(digit =>{
     digit.addEventListener('click',setDisplayValueInput,false)
 })
 
-for (let i=0; i<keyOperator.length; i++){
-    keyOperator[i].addEventListener('click', setOperator,false)
-}
-
-keyEqual.addEventListener('click',function() {
-    input2 = Number(displayValue);
-    result = operate(input1,operator,input2);
-    display.textContent = result
+keyOperator.forEach(key => {
+    key.addEventListener('click', setOperator)
 })
+
+keyEqual.addEventListener('click', getResult)
 
 keyClear.addEventListener('click',clear,false);
 
