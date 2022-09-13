@@ -106,7 +106,8 @@ function getResult() {
     if(input2 === 0 && operator === '/'){
         logError();
     } else {
-    result = Number(operate(input1,operator,input2));
+        ////round here
+    result = Math.round(Number(operate(input1,operator,input2))*100000)/100000;
     display.textContent = result;
     }
 }
