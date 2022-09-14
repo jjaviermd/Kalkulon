@@ -100,9 +100,12 @@ function operate(digitA, operator, digitB) {
         displayValue += e.key || e.target.firstChild.nodeValue;
         display.textContent=displayValue;
         }
-    }else {
-        displayValue += e.key || e.target.firstChild.nodeValue;
+    }else if (/\d/g.test(e.key)){
+        displayValue += e.key;
         display.textContent=displayValue;
+    } else {
+        displayValue += e.target.firstChild.nodeValue;
+        display.textContent= displayValue;
     }
 }
 
