@@ -59,19 +59,43 @@ function operate(digitA, operator, digitB) {
         break;
     }
 }
+function keyBoard(e) {
+    console.log(e.key);
+    if (/\d/.test(e.key)){
+        console.log('case number');
+    }
+    switch (e.key) {
+        case '.':
+            console.log('case dot');
+            break;
+        case 'Backspace':
+            console.log('case digit')
+            break;
+
+        case '+'||'-'||'*'||'/':
+            console.log('case operator')
+            break;
+
+        case 'Enter':
+            console.log('case enter')
+            break;
+    
+        default:
+            break;
+    }
+}
 
  function setDisplayValueInput(e) {
-    //console.log(e.target.firstChild.nodeValue === '.');
     if(e.target.firstChild.nodeValue === '.'){
-        if(!displayValue.includes('.')){
-            displayValue += e.target.firstChild.nodeValue;
-            display.textContent=displayValue;
+     if(!displayValue.includes('.')){
+        displayValue += e.target.firstChild.nodeValue;
+        display.textContent=displayValue;
         }
     }else {
-    displayValue += e.target.firstChild.nodeValue;
-    display.textContent=displayValue;
+        displayValue += e.target.firstChild.nodeValue;
+        display.textContent=displayValue;
     }
-} 
+}
 
 function setOperator(e){
     if(!input1,!operator ===false){
@@ -106,7 +130,6 @@ function getResult() {
     if(input2 === 0 && operator === '/'){
         logError();
     } else {
-        ////round here
     result = Math.round(Number(operate(input1,operator,input2))*100000)/100000;
     display.textContent = result;
     }
@@ -132,3 +155,6 @@ keyEqual.addEventListener('click', getResult)
 keyClear.addEventListener('click',clear,false);
 
 keyBackSpace.addEventListener('click',backspace,false);
+//--------------------------------------------------------------------
+//event listener keyboard;
+window.addEventListener('keydown',keyBoard,false);
