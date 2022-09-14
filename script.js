@@ -14,6 +14,8 @@ let input1;
 let input2;
 let operator = '';
 let result;
+/* let eKey = e.key;
+let nodeKey = e.target.firstChild.nodeValue; */
 //--------------------------------------------------------------------
 // basic math
 function add(digitA) {
@@ -59,46 +61,53 @@ function operate(digitA, operator, digitB) {
         break;
     }
 }
-function keyBoard(e) {
+/* function keyBoard(e) {
     console.log(e.key);
     if (/\d/.test(e.key)){
-        console.log('case number');
+        displayValue += e.key;
+        display.textContent=displayValue;
+    }else if (e.key === '+'||e.key ==='-'||e.key ==='*'||e.key ==='/'){
+        if(input1 && operator){
+            getResult();
+            input1 = result;
+            input2 = undefined;
+            displayValue='';
+            operator=e.key;
+        }else {
+        input1 = Number(displayValue);
+        operator = e.key;
+        displayValue = '';
+        }
+    }else if (e.key === '.'){
+        if (!displayValue.includes('.')){
+                displayValue += e.key;
+                display.textContent=displayValue;
+        } else {
+            displayValue += e.key;
+            display.textContent = displayValue
+            }
+    } else if (e.key === 'Backspace'){
+        backspace();
+    }else if (e.key==='Enter'){
+        getResult();
     }
-    switch (e.key) {
-        case '.':
-            console.log('case dot');
-            break;
-        case 'Backspace':
-            console.log('case digit')
-            break;
-
-        case '+'||'-'||'*'||'/':
-            console.log('case operator')
-            break;
-
-        case 'Enter':
-            console.log('case enter')
-            break;
-    
-        default:
-            break;
-    }
-}
+} */
 
  function setDisplayValueInput(e) {
-    if(e.target.firstChild.nodeValue === '.'){
+    console.log(e);
+    if(e.target.firstChild.nodeValue === '.' || e.key ==='.'){
      if(!displayValue.includes('.')){
-        displayValue += e.target.firstChild.nodeValue;
+        displayValue += e.key || e.target.firstChild.nodeValue;
         display.textContent=displayValue;
         }
     }else {
-        displayValue += e.target.firstChild.nodeValue;
+        displayValue += e.key || e.target.firstChild.nodeValue;
         display.textContent=displayValue;
     }
 }
 
 function setOperator(e){
-    if(!input1,!operator ===false){
+    if(input1 && operator){
         getResult();
         input1 = result;
         input2 = undefined;
@@ -157,4 +166,4 @@ keyClear.addEventListener('click',clear,false);
 keyBackSpace.addEventListener('click',backspace,false);
 //--------------------------------------------------------------------
 //event listener keyboard;
-window.addEventListener('keydown',keyBoard,false);
+window.addEventListener('keydown',setDisplayValueInput,false);
