@@ -1,19 +1,17 @@
-//selectors
+//selectors---------------------------------------------------------------------
 const display = document.querySelector('#screen');
 const keyDigit = document.querySelectorAll('.digit');
 const keyOperator = document.querySelectorAll('.operator');
 const keyEqual = document.querySelector('#equal');
 const keyClear = document.querySelector('#clear');
 const keyBackSpace = document.querySelector('#backspace');
-//--------------------------------------------------------------------
-//Variables
+//-----Variables----------------------------------------------------------------
 let displayValue = '';
 let input1;
 let input2;
 let operator = '';
 let result;
-//--------------------------------------------------------------------
-// basic math
+//--------------basic math------------------------------------------------------
 function add(digitA) {
     return function(digitB){
         return digitA+digitB;
@@ -37,7 +35,7 @@ function divide(digitA) {
         return digitA/digitB;
     }
 }
-//--------------------------------------------------------------------
+//---advanced functions---------------------------------------------------------
 function operate(digitA, operator, digitB) {
     switch (operator) {
     case '+':
@@ -57,7 +55,6 @@ function operate(digitA, operator, digitB) {
         break;
     }
 }
-
 
  function setDisplayValueInput(num) {
     if(num === '.'){
@@ -113,7 +110,7 @@ function logError() {
     let errorMsg = 'Fatal Error'
     display.textContent = errorMsg;
 }
-//handlers
+//--------handlers--------------------------------------------------------------
 function handler(e) {
     if(/\d/g.test(e.key) || e.key ==='.') setDisplayValueInput(e.key);
     if(/\*|\+|\-|\//g.test(e.key)) setOperator(e.key);
@@ -130,10 +127,7 @@ function convertDigit(e){
     let tempDigit = e.target.firstChild.nodeValue;
     setDisplayValueInput(tempDigit);
 }
-
-//--------------------------------------------------------------------
-//event listeners
-
+//---------event listeners------------------------------------------------------
 keyDigit.forEach(digit =>{
     digit.addEventListener('click',convertDigit)
 })
