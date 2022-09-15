@@ -2,8 +2,6 @@
 const display = document.querySelector('#screen');
 const keyDigit = document.querySelectorAll('.digit');
 const keyOperator = document.querySelectorAll('.operator');
-//const keyFunction = document.querySelector('.function');
-//const keysAll = document.querySelector('#grid_container');
 const keyEqual = document.querySelector('#equal');
 const keyClear = document.querySelector('#clear');
 const keyBackSpace = document.querySelector('#backspace');
@@ -14,8 +12,6 @@ let input1;
 let input2;
 let operator = '';
 let result;
-/* let eKey = e.key;
-let nodeKey = e.target.firstChild.nodeValue; */
 //--------------------------------------------------------------------
 // basic math
 function add(digitA) {
@@ -117,18 +113,17 @@ function logError() {
     let errorMsg = 'Fatal Error'
     display.textContent = errorMsg;
 }
-
+//handlers
 function handler(e) {
     if(/\d/g.test(e.key) || e.key ==='.') setDisplayValueInput(e.key);
     if(/\*|\+|\-|\//g.test(e.key)) setOperator(e.key);
+    if(e.key === 'Enter') getResult();
+    if(e.key === 'Backspace') backspace();
+    if(e.key === 'Escape') clear();
 }
 
 function convertOperator(e) {
-    let tempOperator=''
-    if(e.target.firstChild.nodeValue === '+') tempOperator = '+';
-    if(e.target.firstChild.nodeValue ==='-') tempOperator = '-';
-    if(e.target.firstChild.nodeValue ==='*') tempOperator = '*';
-    if(e.target.firstChild.nodeValue ==='/') tempOperator = '/';
+    let tempOperator= e.target.firstChild.nodeValue;
     setOperator(tempOperator);
 }
 function convertDigit(e){
@@ -140,7 +135,7 @@ function convertDigit(e){
 //event listeners
 
 keyDigit.forEach(digit =>{
-    digit.addEventListener('click',convertDigit,false)
+    digit.addEventListener('click',convertDigit)
 })
 
 keyOperator.forEach(key => {
@@ -148,9 +143,8 @@ keyOperator.forEach(key => {
 })
 keyEqual.addEventListener('click', getResult)
 
-keyClear.addEventListener('click',clear,false);
+keyClear.addEventListener('click',clear);
 
-keyBackSpace.addEventListener('click',backspace,false);
-//--------------------------------------------------------------------
-//event listener keyboard;
+keyBackSpace.addEventListener('click',backspace);
+
 window.addEventListener('keydown',handler)
